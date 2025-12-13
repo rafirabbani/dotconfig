@@ -31,7 +31,7 @@ return {
       desc = "FFFind files",
     },
     {
-      "<leader>space",
+      "<leader><space>",
       function()
         require("fff").find_files()
       end,
