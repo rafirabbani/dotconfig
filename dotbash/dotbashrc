@@ -119,19 +119,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-#wsl.exe -u root service mysql status || wsl.exe -u root service mysql start
-#wsl.exe -u root service redis-server status || wsl.exe -u root service redis-server start
-#wsl.exe -u root service postgresql status || wsl.exe -u root service postgresql start
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-export PATH=$PATH:$HOME/personal/tools/git-add
-export PATH=$PATH:/usr/local/go/bin
-
-#[ -z "$SSH_AUTH_SOCK" ] && eval `ssh-agent -s`
-#export KUBE_EDITOR="code -w"
 
 # Set default options for FZF
 # In ~/.bashrc or ~/.zshrc
