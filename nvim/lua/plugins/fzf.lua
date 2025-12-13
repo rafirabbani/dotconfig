@@ -14,7 +14,7 @@ return {
         false,
       },
       {
-        "<leader>space", -- used in FFF
+        "<leader><space>", -- used in FFF
         false,
       },
       {
