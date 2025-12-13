@@ -18,6 +18,13 @@ return {
       preview_scroll_up = { "PageUp", "<C-b>" },
       preview_scroll_down = { "PageDown", "<C-f>" },
     },
+    layout = {
+      height = 0.85,
+      width = 0.85,
+      prompt_position = "top",
+      preview_size = 0.75,
+    },
+    title = vim.fn.getcwd(),
   },
   -- No need to lazy-load with lazy.nvim.
   -- This plugin initializes itself lazily.
