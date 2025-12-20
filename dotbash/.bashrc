@@ -115,20 +115,30 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# ---------------------------------------------------------
+# SSH AGENT RESTORATION
+# ---------------------------------------------------------
+# Define a fixed location for the agent socket
+export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
+
+# Check: Is the agent running?
+if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+  # NO: Start a new agent and assign it to that fixed location
+  ssh-agent -a "$SSH_AUTH_SOCK" >/dev/null
+fi
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-
 # Set default options for FZF
 # In ~/.bashrc or ~/.zshrc
 # Open in tmux popup if on tmux, otherwise use --height mode
-export FZF_DEFAULT_OPTS="--height 70% --tmux 70% --border --padding 1,2 --preview 'fzf-preview.sh {}'"
+export FZF_DEFAULT_OPTS="--height 70% --tmux 70% --border --padding 1,2 --reverse --preview 'fzf-preview.sh {}'"
 eval "$(fzf --bash)"
 # Add ~/.local/bin to PATH if it exists
 # This ensures user-installed binaries like 'fd' are found.
