@@ -123,7 +123,8 @@ export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
 
 # Check: Is the agent running?
 if ! pgrep -u "$USER" ssh-agent >/dev/null; then
-  # NO: Start a new agent and assign it to that fixed location
+  # Delete current socket and Start a new agent and assign it to that fixed location
+  rm -rf "$SSH_AUTH_SOCK"
   ssh-agent -a "$SSH_AUTH_SOCK" >/dev/null
 fi
 
@@ -146,5 +147,9 @@ if [ -d "$HOME/.local/bin" ]; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
 . "$HOME/.cargo/env"
+
+#enable starship
+eval "$(starship init bash)"
 export KUBE_EDITOR="$HOME/.local/bin/nvim"
 export XDG_RUNTIME_DIR="$HOME/.cache/nvim"
+export EDITOR="$HOME/.local/bin/nvim"
