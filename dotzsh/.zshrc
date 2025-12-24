@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+export ZSH_THEME="kafeitu"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -63,11 +63,9 @@ ZSH_THEME="robbyrussell"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM=$HOME/.local/share/ohmyzsh
 
-# eval "$(starship init zsh)"
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
+# Which plugins would you like to load? Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
@@ -80,12 +78,19 @@ if [ -d "$HOME/.local/bin" ]; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
 . "$HOME/.cargo/env"
-plugins=(starship git ssh-agent nvm sdk zsh-eza)
+plugins=(git ssh-agent nvm sdk zsh-eza)
 source $ZSH/oh-my-zsh.sh
-export FZF_DEFAULT_OPTS="--height 70% --tmux 70% --border --padding 1,2 --reverse --preview 'fzf-preview.sh {}'"
-export _ZO_FZF_OPTS="--height 70% --tmux 70% --border --padding 1,2 --reverse --preview 'fzf-preview.sh {}'"
 # Set up fzf key bindings and fuzzy completion
+fzf_default_opts="--ansi --height 70% --tmux 70% --border --padding 1,2 --reverse --preview 'fzf-preview {}'\
+  --bind 'ctrl-u:preview-half-page-up'\
+  --bind 'ctrl-d:preview-half-page-down'\
+  --bind '?:toggle-preview'\
+  --preview-window 'right:70%:wrap'\
+  --bind 'alt-w:toggle-preview-wrap'
+  "
+export FZF_DEFAULT_OPTS="$fzf_default_opts"
 source <(fzf --zsh)
+export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS"
 eval "$(zoxide init --cmd cd zsh)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
@@ -119,3 +124,8 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+function set_zsh_title() {
+  echo -n $'\e]0;'"${PWD}"$'\a'
+}
+autoload -U add-zsh-hook
+add-zsh-hook precmd set_zsh_title

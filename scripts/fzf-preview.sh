@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 #
 # The purpose of this script is to demonstrate how to preview a file or an
 # image in the preview window of fzf.
@@ -29,7 +29,7 @@ fi
 type=$(file --brief --dereference --mime -- "$file")
 
 if [[ $type =~ inode/directory ]]; then
-  eza -T -L 2 --git --icons --group --group-directories-first --git-ignore "$file"
+  eza -T -L 3 --icons --git-ignore --color=always "$file"
   exit
 fi
 
@@ -49,7 +49,7 @@ if [[ ! $type =~ image/ ]]; then
     exit
   fi
 
-  ${batname} --style="${BAT_STYLE:-numbers}" --color=always --pager=never --highlight-line="${center:-0}" -- "$file"
+  ${batname} --style="${BAT_STYLE:-numbers}" --color=always --pager=never --highlight-line="${center:-0}" --wrap=never -- "$file"
   exit
 fi
 
