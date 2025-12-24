@@ -1,6 +1,5 @@
 return {
-  "catppuccin",
-  opts = {
-    transparent_background = true,
-  },
+  "catppuccin/nvim",
+  name = "catppuccin",
+  lazy = false,
 }
