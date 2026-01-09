@@ -78,7 +78,7 @@ if [ -d "$HOME/.local/bin" ]; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
 . "$HOME/.cargo/env"
-plugins=(git ssh-agent nvm sdk zsh-eza)
+plugins=(git ssh-agent nvm sdk zsh-eza aws)
 source $ZSH/oh-my-zsh.sh
 # Set up fzf key bindings and fuzzy completion
 fzf_default_opts="--ansi --height 70% --tmux 70% --border --padding 1,2 --reverse --preview 'fzf-preview {}'\
@@ -124,8 +124,3 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-function set_zsh_title() {
-  echo -n $'\e]0;'"${PWD}"$'\a'
-}
-autoload -U add-zsh-hook
-add-zsh-hook precmd set_zsh_title
