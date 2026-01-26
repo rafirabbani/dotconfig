@@ -7,7 +7,7 @@ local function async_copy(lines)
   vim.uv.spawn("win32yank.exe", {
     args = { "-i", "--crlf" },
     stdio = { stdin, nil, stderr },
-  }, function(code, signal)
+  }, function(code, _signal)
     if code == 0 then
       vim.notify("Async Copy To Windows Clipboard Success", vim.log.levels.INFO)
     end
@@ -45,4 +45,5 @@ if vim.fn.has("wsl") == 1 then
 end
 
 vim.opt.cursorline = false
+vim.opt.modeline = false
 vim.api.nvim_set_hl(0, "LspInlayHint", { fg = "#e4e022", bg = "NONE" })
