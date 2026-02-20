@@ -12,11 +12,16 @@ return {
         "-Dlog.protocol=true",
         "-Dlog.level=ALL",
         "-Xmx1g",
+        '--enable-native-access=ALL-UNNAMED',
         "--add-modules=ALL-SYSTEM",
-        "--add-opens",
-        "java.base/java.util=ALL-UNNAMED",
-        "--add-opens",
-        "java.base/java.lang=ALL-UNNAMED",
+        "--add-opens", "java.base/java.util=ALL-UNNAMED",
+        "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+        "--add-opens", "java.base/java.lang.invoke=ALL-UNNAMED",
+        "--add-opens", "java.prefs/java.util.prefs=ALL-UNNAMED",
+        "--add-opens", "java.base/java.util.concurrent.atomic=ALL-UNNAMED",
+        '--add-opens', 'java.base/sun.nio.fs=ALL-UNNAMED',
+        "--add-opens", "java.base/java.nio.charset=ALL-UNNAMED",
+        "--add-opens", "java.base/java.net=ALL-UNNAMED",
         -- jar jdtls
         "-jar",
         "/home/parasonge/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar",
@@ -27,19 +32,26 @@ return {
         "-data",
         workspace_dir,
       },
-    },
-    settings = {
-      java = {
-        inlayHints = {
-          parameterNames = {
-            enabled = "all",
+      settings = {
+        java = {
+          import = {
+            gradle = {
+              java = {
+                home = "/home/parasonge/.sdkman/candidates/java/11.0.15-trava",
+              },
+            },
           },
-        },
-        configuration = {
-          runtimes = {
-            {
-              name = "JavaSE-11",
-              path = "/home/parasonge/.sdkman/candidates/java/11.0.15-trava",
+          inlayHints = {
+            parameterNames = {
+              enabled = "all",
+            },
+          },
+          configuration = {
+            runtimes = {
+              {
+                name = "JavaSE-11",
+                path = "/home/parasonge/.sdkman/candidates/java/11.0.15-trava",
+              },
             },
           },
         },
