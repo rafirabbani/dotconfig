@@ -1,6 +1,6 @@
 alias towindows='cd /mnt/c/Users/Dans'
 alias k="kubectl"
-alias ssh='TERM=xterm-256color \ssh'
+alias ssh='TERM=xterm-256color ssh'
 alias tmux='TERM=xterm-256color tmux'
 alias vi='nvim'
 alias clip='win32yank.exe -i --crlf'
