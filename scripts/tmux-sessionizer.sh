@@ -318,6 +318,9 @@ if [[ ! -z $session_cmd ]]; then
 elif [[ ! -z $user_selected ]]; then
   selected="$user_selected"
 else
+  fzf_default_opts="--ansi --height 70% --tmux 90% --border --padding 1,2 --reverse \
+  --preview-window 'hidden' \
+  export FZF_DEFAULT_OPTS="$fzf_default_opts"
   selected=$(find_dirs | fzf)
 fi
 
