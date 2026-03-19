@@ -15,18 +15,12 @@ if ! is_tmux_running; then
   exit 1
 fi
 
-fzf_default_opts="--ansi --height 70% --tmux 90% --border --padding 1,2 --reverse \
-  --preview 'fzf-preview {}' \
-  --bind '?:toggle-preview' \
-  --bind 'alt-k:preview-half-page-up' \
-  --bind 'alt-j:preview-half-page-down' \
-  --preview-window 'right:50%:wrap' \
-  --bind 'alt-w:toggle-preview-wrap'"
+fzf_default_opts="--ansi --height 70% --tmux 90% --border --padding 1,2 --reverse --preview-window 'hidden'"
 export FZF_DEFAULT_OPTS="$fzf_default_opts"
 
 # 2. Select the session
 # -F "#{session_name}" gives us clean output
-session=$(tmux list-sessions -F "#{session_name} #{?session_attached,(active),}" 2>/dev/null | fzf --preview-window=hidden --exit-0 | cut -d ' ' -f1)
+session=$(tmux list-sessions -F "#{session_name} #{?session_attached,(active),}" 2>/dev/null | fzf --exit-0 | cut -d ' ' -f1)
 
 # 3. Exit if the user cancelled fzf (variable is empty)
 if [[ -z "$session" ]]; then
