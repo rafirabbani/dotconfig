@@ -81,13 +81,13 @@ fi
 plugins=(git ssh-agent nvm sdk zsh-eza aws)
 source $ZSH/oh-my-zsh.sh
 # Set up fzf key bindings and fuzzy completion
-fzf_default_opts="--ansi --height 70% --tmux 70% --border --padding 1,2 --reverse --preview 'fzf-preview {}'\
-  --bind 'ctrl-u:preview-half-page-up'\
-  --bind 'ctrl-d:preview-half-page-down'\
-  --bind '?:toggle-preview'\
-  --preview-window 'right:70%:wrap'\
-  --bind 'alt-w:toggle-preview-wrap'
-  "
+fzf_default_opts="--ansi --height 70% --tmux 90% --border --padding 1,2 --reverse \
+  --preview 'fzf-preview {}' \
+  --bind '?:toggle-preview' \
+  --bind 'alt-k:preview-half-page-up' \
+  --bind 'alt-j:preview-half-page-down' \
+  --preview-window 'right:50%:wrap' \
+  --bind 'alt-w:toggle-preview-wrap'"
 export FZF_DEFAULT_OPTS="$fzf_default_opts"
 source <(fzf --zsh)
 export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS"
@@ -124,8 +124,3 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-function set_zsh_title() {
-  echo -n $'\e]0;'"${PWD}"$'\a'
-}
-autoload -U add-zsh-hook
-add-zsh-hook precmd set_zsh_title

@@ -28,6 +28,12 @@ fi
 
 type=$(file --brief --dereference --mime -- "$file")
 
+if [[ "$file" == "~" ]]; then
+  echo "~ is a directory"
+  eza -T -L 3 --icons --git-ignore --color=always "$HOME"
+  exit
+fi
+
 if [[ $type =~ inode/directory ]]; then
   eza -T -L 3 --icons --git-ignore --color=always "$file"
   exit

@@ -1,0 +1,107 @@
+Host *
+ IdentitiesOnly yes
+ AddKeysToAgent yes
+ StrictHostKeyChecking no
+
+Host aws-ssm
+  HostName $EC2_INSTANCE_PREPROD #ec2 instance id
+  User appadmins
+  # RequestTTY force
+  ProxyCommand sh -c "aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=22' --region ap-southeast-3"
+  IdentityFile $HOME/.ssh/id_rsa_bastion
+  ForkAfterAuthentication yes
+  SessionType none
+  LocalForward 1220 localhost:22
+  LocalForward 1221 10.54.129.92:22
+  DynamicForward 8443
+  ServerAliveInterval 60
+  ServerAliveCountMax 3
+
+
+Host mea-preprod
+  HostName 10.54.129.92
+  ProxyCommand sh -c "nc -X 5 -x localhost:8443 %h %p"
+  UserKnownHostsFile=/dev/null
+  StrictHostKeyChecking no
+  User apps
+  IdentityFile $HOME/.ssh/id_rsa_bastion
+
+Host mea-prod
+  HostName 10.54.11.233
+  ProxyCommand sh -c "nc -X 5 -x localhost:8443 %h %p"
+  UserKnownHostsFile=/dev/null
+  StrictHostKeyChecking no
+  User apps
+  IdentityFile $HOME/.ssh/id_rsa_bastion
+
+Host mea-preprod-fe
+  HostName 10.54.129.91
+  ProxyCommand sh -c "nc -X 5 -x localhost:8443 %h %p"
+  UserKnownHostsFile=/dev/null
+  StrictHostKeyChecking no
+  User mickol
+
+Host rabbitmq-unified
+	HostName 10.52.109.235
+  UserKnownHostsFile=/dev/null
+  StrictHostKeyChecking no
+	user muhammadfm
+	ProxyJump mea-preprod
+	IdentityFile $HOME/.ssh/id_rsa_bastion
+
+Host aws-ssm-prod
+  HostName $EC2_INSTANCE_PROD #ec2 instance id
+  User appadmins
+  # RequestTTY force
+  ProxyCommand sh -c "aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=22' --region ap-southeast-3"
+  IdentityFile $HOME/.ssh/id_rsa_bastion
+  ForkAfterAuthentication yes
+  SessionType none
+  LocalForward 1331 localhost:22
+  ServerAliveInterval 60
+  ServerAliveCountMax 3
+
+Host worker1-dans
+  Hostname 10.132.103.22
+  IdentityFile $HOME/.ssh/id_ecdsa
+  User worker1
+
+Host aws-ssm-terminal
+  HostName localhost
+  Port 1220
+  User appadmins
+  RequestTTY force
+  IdentityFile $HOME/.ssh/id_rsa_bastion
+
+Host aws-ssm-terminal-prod
+  HostName localhost
+  Port 1331
+  User appadmins
+  RequestTTY force
+  IdentityFile $HOME/.ssh/id_rsa_bastion
+
+Host github.com
+ HostName github.com
+ IdentityFile $HOME/.ssh/id_rsa_github
+
+Host bitbucket.org
+ HostName altssh.bitbucket.org
+ IdentityFile $HOME/.ssh/id_ecdsa
+ Port 443
+
+Host gitlab.com
+ Hostname gitlab.com
+ IdentityFile $HOME/.ssh/id_ecdsa
+
+Host localhost
+ IdentityFile $HOME/.ssh/id_rsa_bastion
+
+Host kolektix
+ Hostname bitbucket.org
+ IdentityFile $HOME/.ssh/id_rsa_github
+
+Host cicd-gitlab
+ Hostname cicd-gitlab-ee.telkomsel.co.id
+ IdentityFile $HOME/.ssh/id_rsa_bastion
+ user mea_dev
+
