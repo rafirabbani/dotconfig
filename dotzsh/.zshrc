@@ -124,3 +124,8 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+function set_zsh_title() {
+  echo -n $'\e]0;'"${PWD}"$'\a'
+}
+autoload -U add-zsh-hook
+add-zsh-hook precmd set_zsh_title
