@@ -11,9 +11,8 @@ is_tmux_running() {
 }
 
 if ! is_tmux_running; then
-  echo "tmux is not running.  starting tmux-sessionizer."
-  tmux-sessionizer
-  exit 0
+  echo "tmux is not running.  please start tmux-sessionizer."
+  exit 1
 fi
 
 # 2. Select the session
