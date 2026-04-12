@@ -19,11 +19,9 @@ return {
       preview_scroll_down = { "PageDown", "<C-f>" },
     },
     layout = {
-      height = 0.85,
-      width = 0.85,
       prompt_position = "top",
-      preview_size = 0.75,
     },
+    prompt = "? ",
     title = vim.fn.getcwd(),
   },
   -- No need to lazy-load with lazy.nvim.
@@ -38,6 +36,28 @@ return {
       desc = "FFFind files",
     },
     {
+      "fz",
+      function()
+        require("fff").live_grep({
+          grep = {
+            modes = { "fuzzy", "plain" },
+          },
+        })
+      end,
+      desc = "Live fffuzy grep",
+    },
+    {
+      "frg",
+      function()
+        require("fff").live_grep({
+          grep = {
+            modes = { "fuzzy", "regex" },
+          },
+        })
+      end,
+      desc = "Live fffuzy grep",
+    },
+    {
       "<leader><space>",
       function()
         require("fff").find_files()
@@ -45,18 +65,11 @@ return {
       desc = "FFFind files",
     },
     {
-      "<leader>space",
+      "<leader>ff",
       function()
         require("fff").find_files()
       end,
       desc = "FFFind files",
-    },
-    {
-      "<leader>fF",
-      function()
-        require("fff").find_in_git_root()
-      end,
-      desc = "FFFind in Git Root",
     },
   },
 }
