@@ -16,7 +16,7 @@ fzf_default_opts="--ansi --height 70% --tmux 90% --border --padding 1,2 --revers
 export FZF_DEFAULT_OPTS="$fzf_default_opts"
 
 # 2. Select from window list
-tmux_format="#{window_index}|#{?window_active,*,}pwd:#{s|$HOME|~|:pane_current_path} cmd:#{pane_current_command} #{?#{==:#{window_panes},1},[1 pane],[#{window_panes} panes]}\
+tmux_format="#{window_index}|#{?window_active,*,}:#{s|$HOME|~|:pane_current_path} cmd:#{pane_current_command} #{?#{==:#{window_panes},1},[1 pane],[#{window_panes} panes]}\
 #{?window_zoomed_flag,(ZOOMED),}"
 
 fzf_preview='echo {} | cut -d "|" -f2 | awk -F ":" "{print \$2}" | cut -d " " -f1 | xargs -r fzf-preview'
