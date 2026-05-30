@@ -7,6 +7,13 @@ return {
         -- This is the crucial part:
         -- Stop yamlls from attaching to Helm files
         filetypes = { "yaml" },
+        settings = {
+          yaml = {
+            customTags = {
+              "!reference sequence",
+            },
+          },
+        },
       },
       -- Dedicated Helm server
       helm_ls = {
