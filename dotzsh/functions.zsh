@@ -3,7 +3,7 @@ aws-login() {
     local profile=${1:-default} # Defaults to 'default' if no profile is provided
 
     echo "Logging into SSO for profile: $profile..."
-    if aws sso login --profile "$profile"; then
+    if aws sso login --profile "$profile" --no-browser; then
         echo "Login successful. Exporting credentials..."
         # This part extracts the credentials and exports them to the current shell
         eval $(aws configure export-credentials --profile "$profile" --format env)

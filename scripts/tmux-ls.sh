@@ -18,9 +18,18 @@ fi
 fzf_default_opts="--ansi --height 70% --tmux 90% --border --padding 1,2 --reverse --preview-window 'hidden'"
 export FZF_DEFAULT_OPTS="$fzf_default_opts"
 
-# 2. Select the session
-# -F "#{session_name}" gives us clean output
-session=$(tmux list-sessions -F "#{session_name} #{?session_attached,(active),}" 2>/dev/null | fzf --exit-0 | cut -d ' ' -f1)
+# Use the $'' syntax to ensure these are actual escape codes
+GREEN=$'\033[32m'
+YELLOW=$'\033[33m'
+CYAN=$'\033[36m'
+RESET=$'\033[0m'
+
+# The format string
+format="${CYAN}#{?session_attached,*, }${RESET}${GREEN}#{session_name}${RESET} ${YELLOW}#{s|$HOME|~|:pane_current_path}${RESET}"
+
+# pipe into fzf.
+# We use awk '{print $2}' because field 1 is the * symbol.
+session=$(tmux list-sessions -F "$format" 2>/dev/null | fzf --exit-0 | awk '{print $1}')
 
 # 3. Exit if the user cancelled fzf (variable is empty)
 if [[ -z "$session" ]]; then

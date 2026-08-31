@@ -27,3 +27,24 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
     vim.opt_local.filetype = "helm"
   end,
 })
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = vim.api.nvim_create_augroup("custom-terminal-mappings", { clear = true }),
+  callback = function()
+    -- Force terminal to start in insert mode instantly
+    vim.cmd("startinsert")
+    local opts = { buffer = true }
+    vim.keymap.set("t", "<esc><esc>", "<C-\\><C-n>", opts)
+    vim.keymap.set("t", "<C-h>", "<C-\\><C-n><C-w>h", opts)
+    vim.keymap.set("t", "<C-j>", "<C-\\><C-n><C-w>j", opts)
+    vim.keymap.set("t", "<C-k>", "<C-\\><C-n><C-w>k", opts)
+    vim.keymap.set("t", "<C-l>", "<C-\\><C-n><C-w>l", opts)
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "term://*",
+  callback = function()
+    vim.cmd("startinsert")
+  end,
+})
