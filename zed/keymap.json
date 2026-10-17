@@ -11,10 +11,14 @@
     "bindings": {
       "ctrl-/": "terminal_panel::Toggle",
       "space h": "workspace::ToggleLeftDock",
+      "space l": "workspace::ToggleRightDock",
+      "space e": "project_panel::Toggle",
+      "space g g": "git_panel::Toggle",
       "ctrl-j": "workspace::ActivatePaneDown",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-l": "workspace::ActivatePaneRight"
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "space g r": "git_graph::Open"
     }
   },
   {
@@ -23,11 +27,14 @@
       "space f f": "file_finder::Toggle",
       "space f tab": "tab_switcher::Toggle",
       "space h": "workspace::ToggleLeftDock",
+      "space l": "workspace::ToggleRightDock",
+      "space e": "project_panel::Toggle",
+      "space g g": "git_panel::Toggle",
       "ctrl-j": "workspace::ActivatePaneDown",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
-      "ctrl-/": "terminal_panel::Toggle"
+      "ctrl-/": "terminal_panel::Toggle",
     }
   },
   {
@@ -45,9 +52,14 @@
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "space h": "workspace::ToggleLeftDock",
+      "space e": "project_panel::Toggle",
+      "space g g": "git_panel::Toggle",
+      "space l": "workspace::ToggleRightDock",
       "ctrl-/": "terminal_panel::Toggle",
       "space f f": "file_finder::Toggle",
-      "space f tab": "tab_switcher::Toggle"
+      "f f": "file_finder::Toggle",
+      "space f tab": "tab_switcher::Toggle",
+      "space g r": "git_graph::Open"
       // "j k": "vim::NormalBefore"
     }
   },
@@ -67,7 +79,9 @@
       "ctrl-j": "menu::SelectNext",
       "ctrl-k": "menu::SelectPrevious",
       "ctrl-shift-j": "pane::SplitDown",
-      "ctrl-shift-k": "pane::SplitUp"
+      "ctrl-shift-k": "pane::SplitUp",
+      "ctrl-shift-l": "pane::SplitRight",
+      "ctrl-shift-h": "pane::SplitLeft"
     }
   },
   {
@@ -79,7 +93,10 @@
     }
   },
   {
-    "context": "",
-    "bindings": {}
+    "context": "GitPanel && (ChangesList || HistoryList) && !GitBranchSelector && !GitRepositorySelector",
+    "bindings": {
+      "shift-l": "git_panel::ActivateHistoryTab",
+      "shift-h": "git_panel::ActivateChangesTab"
+    }
   }
 ]
