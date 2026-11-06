@@ -7,7 +7,6 @@ aws-login() {
         echo "Login successful. Exporting credentials..."
         # This part extracts the credentials and exports them to the current shell
         eval $(aws configure export-credentials --profile "$profile" --format env)
-        printenv | grep -i aws
         echo "Credentials exported! You can now use tools like Terraform or legacy CLI."
         return 0
     else

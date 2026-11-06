@@ -16,15 +16,10 @@
     "model_parameters": []
   },
   "git_panel": {
+    "group_by": "status",
+    "tree_view": true,
     "dock": "left"
   },
-  "wsl_connections": [
-    {
-      "distro_name": "Ubuntu-24.04",
-      "user": null,
-      "projects": []
-    }
-  ],
   "vim_mode": true,
   "ui_font_size": 16,
   "buffer_font_size": 15,

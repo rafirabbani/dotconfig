@@ -1,0 +1,8 @@
+export KUBE_EDITOR="/usr/local/bin/nvim"
+export EDITOR="/usr/local/bin/nvim"
+export CARGO_HOME="/usr/local/share/cargo"
+export RUSTUP_HOME="/usr/local/bin/rustup"
+export VISUAL="/usr/local/bin/nvim"
+export SUDO_EDITOR="/usr/local/bin/nvim"
+export PATH="$HOME/.local/bin:$PATH"
+export NVM_DIR="/usr/local/bin/nvm-dir"
