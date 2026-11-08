@@ -1,0 +1,12 @@
+alias k="kubectl"
+alias ssh='TERM=xterm-256color ssh'
+alias tmux='TERM=xterm-256color tmux'
+alias vi='nvim'
+alias grep='rg'
+alias env-db-preprod="source $HOME/script/bash/db-export"
+# alias tree-sitter="$HOME/.local/bin/"
+alias fzf-lua="nvim -l '$HOME/.local/share/nvim/lazy/fzf-lua/scripts/cli.lua' files --no_ignore=true follow=true hidden=true"
+# alias tsel-proxy="nohup sthp -p 8444 -s localhost:8443 > /dev/null 2>&1 &"
+alias rcp="rsync -ah --info=progress2"
+alias yt="youtube-tui"
+alias chrome="google-chrome"

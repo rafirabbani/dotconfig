@@ -1,0 +1,102 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-/": "terminal_panel::Toggle",
+      "space h": "workspace::ToggleLeftDock",
+      "space l": "workspace::ToggleRightDock",
+      "space e": "project_panel::Toggle",
+      "space g g": "git_panel::Toggle",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "space g r": "git_graph::Open"
+    }
+  },
+  {
+    "context": "Workspace && vim_mode == normal",
+    "bindings": {
+      "space f f": "file_finder::Toggle",
+      "space f tab": "tab_switcher::Toggle",
+      "space h": "workspace::ToggleLeftDock",
+      "space l": "workspace::ToggleRightDock",
+      "space e": "project_panel::Toggle",
+      "space g g": "git_panel::Toggle",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-/": "terminal_panel::Toggle",
+    }
+  },
+  {
+    "context": "TabSwitcher",
+    "bindings": {
+      "k": "menu::SelectPrevious",
+      "j": "menu::SelectNext"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "space h": "workspace::ToggleLeftDock",
+      "space e": "project_panel::Toggle",
+      "space g g": "git_panel::Toggle",
+      "space l": "workspace::ToggleRightDock",
+      "ctrl-/": "terminal_panel::Toggle",
+      "space f f": "file_finder::Toggle",
+      "f f": "file_finder::Toggle",
+      "space f tab": "tab_switcher::Toggle",
+      "space g r": "git_graph::Open"
+      // "j k": "vim::NormalBefore"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "ctrl-shift-h": null,
+      "ctrl-shift-l": null,
+      "ctrl-shift-j": null,
+      "ctrl-shift-k": null
+      // "j k": "vim::NormalBefore"
+    }
+  },
+  {
+    "context": "FileFinder || (FileFinder > Picker > Editor) || (FileFinder > Picker > menu)",
+    "bindings": {
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrevious",
+      "ctrl-shift-j": "pane::SplitDown",
+      "ctrl-shift-k": "pane::SplitUp",
+      "ctrl-shift-l": "pane::SplitRight",
+      "ctrl-shift-h": "pane::SplitLeft"
+    }
+  },
+  {
+    "context": "VimControl && !menu || !Editor && !Terminal",
+    "bindings": {
+      "shift-l": "vim::GoToTab",
+      "shift-h": "vim::GoToPreviousTab",
+      "space b d": "pane::CloseActiveItem"
+    }
+  },
+  {
+    "context": "GitPanel && (ChangesList || HistoryList) && !GitBranchSelector && !GitRepositorySelector",
+    "bindings": {
+      "shift-l": "git_panel::ActivateHistoryTab",
+      "shift-h": "git_panel::ActivateChangesTab"
+    }
+  }
+]
