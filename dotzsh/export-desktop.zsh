@@ -6,3 +6,4 @@ export VISUAL="/usr/local/bin/nvim"
 export SUDO_EDITOR="/usr/local/bin/nvim"
 export PATH="$HOME/.local/bin:$PATH"
 export NVM_DIR="/usr/local/bin/nvm-dir"
+export GPG_TTY=$(tty)
