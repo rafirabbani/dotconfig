@@ -10,3 +10,6 @@ alias fzf-lua="nvim -l '$HOME/.local/share/nvim/lazy/fzf-lua/scripts/cli.lua' fi
 alias rcp="rsync -ah --info=progress2"
 alias yt="youtube-tui"
 alias chrome="google-chrome"
+alias connect-vpn-dans="pritunl-client start z5xts6ec8on0rknp -r"
+alias disconnect-vpn-dans="pritunl-client stop z5xts6ec8on0rknp"
+

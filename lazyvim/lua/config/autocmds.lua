@@ -48,3 +48,15 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.cmd("startinsert")
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "grug-far",
+  callback = function(evt)
+    vim.schedule(function()
+      if vim.api.nvim_buf_is_valid(evt.buf) then
+        pcall(vim.keymap.del, "v", "p", { buffer = evt.buf })
+        pcall(vim.keymap.del, "v", "P", { buffer = evt.buf })
+      end
+    end)
+  end,
+})
